@@ -1,0 +1,12 @@
+{
+  "name": "GhettoStats",
+  "description": "Statistics Monitor Using CloudWatch and NodeJS",
+  "main": "index.js",  
+  "private" : true,
+  "version": "0.0.1",
+  "dependencies": {
+    "q": ">= 1.4.1",
+    "aws-sdk": ">= 2.1.35"
+  },
+  "engine": "node >= 0.10.30"
+}
