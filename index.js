@@ -4,28 +4,32 @@ var fs = require('fs'),
     aws = require('aws-sdk'),
     events = require('events');
 
-var eventEmitter = new events.EventEmitter();
-
 var defaults = {
     loop: null,
     tick_rate: 5000,
     tick_main: 1000
   }
 
-setup();
-//mainLoop();
+_scan()
+// .then(_getMetrics)
 
 
-eventEmitter.on('trigger', mainLoop);
+function _getMetrics() {
+//getting metrics somehow and someway
+}
 
-function setup() {
- // defaults.loop = setInterval(mainLoop, defaults.tick_main);
+function _scan() {
+var modexists = fs.existsSync(__dirname + '/modules/test');
+  if (modexists) {
+      console.log('exists');
+} else {
+     console.log('No module, creating sample');
+     fs.createReadStream(__dirname + '/modules/test.json').pipe(fs.createWriteStream(__dirname + '/modules/test'));
+}
+//var mod = require('./modules/test');
 }
 
 function mainLoop() {
-  console.log('hello world');
+//makes alarm groups, sorts modules etc.
 }
 
-setTimeout(function() {
-  eventEmitter.emit('trigger');
-}, 2000);
