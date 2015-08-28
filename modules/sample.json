@@ -1,0 +1,16 @@
+var test = module.exports = {
+  name: 'TestPlugin',
+  tick_rate: 5000,
+  actions: [
+    {
+      "count": function() {
+        return (2); //return some count
+      }
+    },
+    {
+      "Instance-ID": function() {
+        return ('dfasdfa'); //return some id
+      }
+    }
+  ]
+}

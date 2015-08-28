@@ -1,35 +1,18 @@
 var fs = require('fs'),
     http = require('http'),
     Q = require('q'),
-    aws = require('aws-sdk'),
-    events = require('events');
+    aws = require('aws-sdk');
 
-var defaults = {
-    loop: null,
-    tick_rate: 5000,
-    tick_main: 1000
-  }
+setup();
 
-_scan()
-// .then(_getMetrics)
-
-
-function _getMetrics() {
-//getting metrics somehow and someway
-}
-
-function _scan() {
-var modexists = fs.existsSync(__dirname + '/modules/test');
-  if (modexists) {
-      console.log('exists');
+function setup() {
+var modules = fs.readdirSync(__dirname + '/modules');
+  if (modules.length === 0) {
+    console.log('No Modules, making sample');
+    fs.createReadStream(__dirname + '/test.json').pipe(fs.createWriteStream(__dirname + '/modules/sample.json'));
+    setup();
 } else {
-     console.log('No module, creating sample');
-     fs.createReadStream(__dirname + '/modules/test.json').pipe(fs.createWriteStream(__dirname + '/modules/test'));
-}
-//var mod = require('./modules/test');
-}
-
-function mainLoop() {
-//makes alarm groups, sorts modules etc.
-}
-
+    modules.sort();
+    console.log(modules);
+  };
+};
